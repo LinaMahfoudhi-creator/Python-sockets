@@ -6,19 +6,15 @@
 """
 from codage import checksum_calculate
 
-
 def checksum_decode(data_with_checksum, block_size=3):
 
     initial_data= data_with_checksum[:len(data_with_checksum)-block_size]
-    #print(initial_data)
     checksum= data_with_checksum[len(data_with_checksum)-block_size:]
-    #print(checksum)
     received_checksum=checksum_calculate(initial_data)
     if received_checksum == checksum:
-        #print("Checksum valide")
-        return initial_data
+        return (initial_data,"success")
     else:
-        return "error"
+        return (initial_data,"error")
 
 
-print(checksum_decode("010010011101011101001"))
+#print("Décodage "+checksum_decode("001010011101011101000").__str__())
